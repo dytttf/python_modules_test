@@ -4,18 +4,15 @@ import urllib2
 from lxml import etree
 from xml.etree import ElementTree
 
+import lxml
 from lxml.html.clean import Cleaner
+
 def filter_style_script(text):
-    url = 'http://www.amazon.in/Hate-Story-3-Harman-Joshi/dp/B01CSH5LTW'
-    text = requests.get(url).text
-    s = filter_style_script(text)
-    s = s.strip()
-    print s[:100]
-    html_cleaner = lxml.html.clean.Cleaner(scripts=True, javascript=True, comments=False, style=True,
+    u'''去除注释 style script'''
+    html_cleaner = Cleaner(scripts=True, javascript=True, comments=False, style=True,
                     links=False, meta=False, page_structure=False, processing_instructions=False,
                     embedded=False, frames=False, forms=False, annoying_tags=False, remove_tags=None,
                     remove_unknown_tags=False, safe_attrs_only=False)
-    etree = lxml.html.document_fromstring(text, lxml.html.HTMLParser(remove_comments=True))
     text = html_cleaner.clean_html(text)
     return text
 

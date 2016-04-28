@@ -17,5 +17,9 @@ print sys.getrefcount(a)
 # 查看python执行路径
 print sys.executable
 
+#sys.exit("test sys exit")
+
+print sys.maxunicode
+
 if __name__=="__main__":
     pass

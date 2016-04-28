@@ -30,7 +30,8 @@ print HTMLParser.HTMLParser().unescape("&lt;")
 
 
 if __name__=="__main__":
-    html = urllib2.urlopen('http://www.baidu.com').read()
-    myhtml = myHtmlParser()
-    myhtml.feed(html)
+    #html = urllib2.urlopen('http://www.baidu.com').read()
+    #myhtml = myHtmlParser()
+    #myhtml.feed(html)
+    pass
     
