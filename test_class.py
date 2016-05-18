@@ -301,4 +301,24 @@ ml = Maxlist(10)
 for i in range(20):
     ml.append(i)
 '''   
-        
+
+# 元类
+# 使用metaclass为列表添加add方法
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        attrs['add'] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, bases, attrs)
+
+#2.7 版本不支持这样定义
+#class MyList(list, metaclass=ListMetaclass):
+class MyList(list):
+    __metaclass__ = ListMetaclass
+    pass
+
+l = MyList()
+l.append(1)
+l.add(2)
+print(l)
+
+
+
