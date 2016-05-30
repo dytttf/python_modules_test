@@ -6,7 +6,7 @@ import xlrd
 import xlwt
 
 #xlrd只读
-book = xlrd.open_workbook('test.xlsx', on_demand=True)
+book = xlrd.open_workbook('./test_files/test.xlsx', on_demand=True)
 
 #工作表数目sheet
 print book.nsheets
@@ -41,10 +41,11 @@ style = xlwt.XFStyle()
 font = xlwt.Font()
 font.name = 'Times New Roman'
 font.bold = True
+font.colour_index = 13
 style.font = font
 sheet.write(0, 1, "Times New Roman", style)
 
 #不能写xlsx，打开报错
-excel_file.save('ttt.xls')
+excel_file.save('./test_files/ttt.xls')
 
 
