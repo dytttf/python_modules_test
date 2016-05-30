@@ -9,14 +9,26 @@ from lxml.html.clean import Cleaner
 
 def filter_style_script(text):
     u'''去除注释 style script'''
-    html_cleaner = Cleaner(scripts=True, javascript=True, comments=False, style=True,
+    html_cleaner = Cleaner(scripts=True, javascript=True, comments=True, style=True,
                     links=False, meta=False, page_structure=False, processing_instructions=False,
                     embedded=False, frames=False, forms=False, annoying_tags=False, remove_tags=None,
                     remove_unknown_tags=False, safe_attrs_only=False)
     text = html_cleaner.clean_html(text)
     return text
 
-
+html = '''
+<html>
+    <head>
+    <title>fasdfasd</title>
+    <!--
+    hello
+    -->
+    </head>
+    <body>
+    </body>
+</html>
+'''
+print filter_style_script(html)
 
 def text(html):
     data = etree.HTML(html)
@@ -26,16 +38,16 @@ def text(html):
     print build(data)
 
 
-xml_text = '''<?xml version="1.0" encoding="utf-8"?>  
-<root>  
- <person age="18">  
-    <name>hzj</name>  
-    <sex>man</sex>  
- </person>  
- <person age="19" des="hello">  
-    <name>kiki</name>  
-    <sex>female</sex>  
- </person>  
+xml_text = '''<?XML version="1.0" encoding="utf-8"?>
+<root>
+ <person age="18">
+    <name>hzj</name>
+    <sex>man</sex>
+ </person>
+ <person age="19" des="hello">
+    <name>kiki</name>
+    <sex>female</sex>
+ </person>
 </root>'''
 
 root = ElementTree.fromstring(xml_text)
