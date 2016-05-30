@@ -3,6 +3,7 @@
 python FTP 服务搭建测试
 模块  pyftpdlib
 '''
+import os
 import pyftpdlib
 import socket
 
@@ -13,11 +14,17 @@ from pyftpdlib.authorizers import DummyAuthorizer
 from pyftpdlib.handlers import FTPHandler
 from pyftpdlib.servers import FTPServer
 
+if not os.path.exists('./temp_ftp'):
+    os.mkdir('./temp_ftp')
+if not os.path.exists('./temp_ftp/readme.txt'):
+    with open('./temp_ftp/readme.txt', 'w') as f:
+        f.write('this is a ftpdlib test dir and file\n')
+
 authorizer = DummyAuthorizer()
 # 密码用户
-authorizer.add_user("username", '12345', '/work/', perm="elradfmw")
+authorizer.add_user("username", '12345', './', perm="elradfmw")
 # 匿名用户
-authorizer.add_anonymous("/work/something")
+authorizer.add_anonymous("./temp_ftp")
 
 handler = FTPHandler
 handler.authorizer = authorizer
