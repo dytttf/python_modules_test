@@ -2,8 +2,8 @@
 
 #当for循环执行完成后执行else 被break时不执行
 for i in range(10):
-    if i > 6:
-    #if i > 11:
+    #if i > 6:
+    if i > 11:
         break
 else:
     print 1
