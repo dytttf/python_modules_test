@@ -28,10 +28,32 @@ def main():
 # plt.plot(x, '')
 
 # 扇形图
+# x = [1,2,3]
+# y = [1,2,3]
+# plt.pie(x, labels=y)
+# plt.show()
+
+#设置显示中文
+from pylab import mpl
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+mpl.rcParams['axes.unicode_minus'] = False
+#折线图
 x = [1,2,3]
 y = [1,2,3]
-plt.pie(x, labels=y)
+x_ticks = ['a', 'b', 'c']
+plt.plot(x,y)
+#标题
+plt.title(u"速率")
+#刻度
+plt.xticks(x, x_ticks)
+#设置x轴对象格式 例如纵向
+x_axis = plt.gca().xaxis
+for i in x_axis.get_ticklabels():
+    i.set_rotation(-90)
 plt.show()
+
+
+
 if __name__ == '__main__':
     #main()
     
