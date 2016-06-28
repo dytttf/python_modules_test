@@ -2,6 +2,7 @@
 '''
 异常类测试
 '''
+import time
 import traceback
 
 class myexc(Exception):
@@ -40,7 +41,7 @@ try:
     #int('')
 except ZeroDivisionError as e:
     print '{0!r}'.format(e)
-    int("")
+    #int("")
 except Exception as e:
     print '{0!r}'.format(e)
 
@@ -48,6 +49,7 @@ def test_keybord():
     while 1:
         time.sleep(1)
     return
+
 try:
     print "Ctrl+c"
     test_keybord()
@@ -55,6 +57,9 @@ except KeyboardInterrupt as e:
     print 1
     print e
 
+
+
+raise Exception, 'hello'
 
 
 
