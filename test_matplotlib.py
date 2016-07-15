@@ -52,6 +52,34 @@ for i in x_axis.get_ticklabels():
     i.set_rotation(-90)
 plt.show()
 
+def get_figure(index, title, info_list):
+    #plt.figure(1)
+    #430 4代表总数  3代表每一行并排图数  0代表第一个图的索引（若为1，则从第二个位置开始画）
+    #传递一个参数为简便写法，只是用于子图数量少于10的情况
+    #一般写法为(4,3,index)
+    a = plt.subplot(4,4,index)
+    
+    plt.sca(a)
+    x = []
+    y = []
+    x_ticks = []
+    for index, info in enumerate(info_list):
+        num = info['num']
+        x.append(index)
+        y.append(int(info['speed']))
+        x_ticks.append(datetime.datetime.fromtimestamp(info['time']).strftime("%H:%M") + ' %s'%num)
+    plt.plot(x,y)
+    plt.title(u"%s 数据采集速率"%title)
+    plt.xticks(x, x_ticks)
+    x_axis = plt.gca().xaxis
+    for i in x_axis.get_ticklabels():
+        i.set_rotation(-90)
+    return
+
+
+
+
+
 
 
 if __name__ == '__main__':
