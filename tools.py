@@ -33,3 +33,13 @@ def ip_to_number(ip_address):
     return number
 
 
+def get_random_ip():
+    import random
+    ip_list = []
+    for i in range(4):
+        ip_list.append(str(random.sample(range(1, 253), 1)[0]))
+    return ".".join(ip_list)
+
+
+if __name__ == "__main__":
+    print get_random_ip()
