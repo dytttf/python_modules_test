@@ -41,5 +41,24 @@ def get_random_ip():
     return ".".join(ip_list)
 
 
+def string_to_number(string, ignore_case=False):
+    '''
+    redis实战 P165
+    只转换前6位
+    '''
+    if ignore_case:
+        string = string.lower()
+    pieces = map(ord, string[:6])
+    while len(pieces) < 6:
+        pieces.append(-1)
+    score = 0
+    for piece in pieces:
+        score = score * 257 + piece + 1
+    return score * 2 + (len(string) > 6)
+        
+    
+
+
 if __name__ == "__main__":
     print get_random_ip()
+    

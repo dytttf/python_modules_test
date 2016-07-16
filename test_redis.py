@@ -12,10 +12,16 @@ redis_uri = "redis://localhost:6379/0"
 
 def timeout():
     conn = redis.StrictRedis.from_url(redis_uri,
-                                      retry_on_timeout=True,
-                                      socket_timeout=20,
+                                      #retry_on_timeout=True,
+                                      #socket_timeout=20,
                                       )
     print conn.keys("*")
+    conn_list = conn.connection_pool._available_connections
+    print [id(x) for x in conn_list]
+    time.sleep(15)
+    print conn.keys("*")
+    conn_list = conn.connection_pool._available_connections
+    print [id(x) for x in conn_list]
     return
 
 
@@ -53,11 +59,12 @@ def test_watch():
 
     for t in thread_list:
         t.join()
-    return 
+    return
+
     
     
     
 
 if __name__ == "__main__":
-    #timeout()
-    test_watch()
+    timeout()
+    #test_watch()
