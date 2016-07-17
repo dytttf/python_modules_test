@@ -56,7 +56,18 @@ def string_to_number(string, ignore_case=False):
         score = score * 257 + piece + 1
     return score * 2 + (len(string) > 6)
         
-    
+
+def shard_key(base, key, total_elements, shard_size):
+    '''计算redis分片用key
+    redis实战 P216
+    '''
+    import binascii
+    if isinstance(key, (int, long)) or key.isdigit():
+        shard_id = int(str(key), 10) // shard_size
+    else:
+        shards = 2 * total_elements // shard_size
+        shard_id = binascii.crc32(key) % shards
+    return "%s:%s"%(base, shard_id)
 
 
 if __name__ == "__main__":
