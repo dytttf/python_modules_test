@@ -82,8 +82,18 @@ def script_load(script):
                 "EVAL", script, len(keys), *(keys+args))
     return call
 
+def test_incr():
+    conn = redis.StrictRedis.from_url(redis_uri)
+    key = "test_incr"
+    from multiprocessing.dummy import Pool
+    conn.delete(key)
+
+    pool = Pool(100)
+    pool.map(lambda x: conn.incrby(key,2), range(100000))
+    print conn.get(key)
     
 
 if __name__ == "__main__":
-    timeout()
+    #timeout()
     #test_watch()
+    #test_incr()
