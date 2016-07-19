@@ -69,7 +69,29 @@ def shard_key(base, key, total_elements, shard_size):
         shard_id = binascii.crc32(key) % shards
     return "%s:%s"%(base, shard_id)
 
+def everySystem(number, system):
+    '''
+    实现数字向任意进制的转换
+    base = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    '''
+    base = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    base = base[:system]
+    chars = []
+    while 1:
+        number, mod = divmod(number, system)
+        if number < system:
+            chars.append(base[mod])
+            chars.append(base[number])
+            break
+        else:
+            chars.append(base[mod])
+    chars.reverse()
+    chars = [str(x) for x in chars]
+    return "".join(chars)
+        
+
 
 if __name__ == "__main__":
-    print get_random_ip()
+    #print get_random_ip()
+    #print everySystem(1000, 33)
     
