@@ -94,6 +94,6 @@ def test_incr():
     
 
 if __name__ == "__main__":
-    #timeout()
+    timeout()
     #test_watch()
     #test_incr()
