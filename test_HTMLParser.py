@@ -25,6 +25,11 @@ class myHtmlParser(HTMLParser.HTMLParser):
         print self.data
 
 
+def escape():
+    s = raw_input(">>:")
+    print HTMLParser.HTMLParser().unescape(s)
+    return 
+
 #html实体字符转义
 print HTMLParser.HTMLParser().unescape("&lt;")
 
@@ -33,5 +38,6 @@ if __name__=="__main__":
     #html = urllib2.urlopen('http://www.baidu.com').read()
     #myhtml = myHtmlParser()
     #myhtml.feed(html)
+    #escape()
     pass
     
