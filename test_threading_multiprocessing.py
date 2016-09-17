@@ -2,7 +2,7 @@
 import time
 import threading
 import multiprocessing
-from multiprocessing import Process, Pipe, Queue
+from multiprocessing import Process, Pipe, Queue, Event, dummy
 
 
 data = []
@@ -22,10 +22,10 @@ def test_global_in_multiprocess():
         print "ok"
 
 def change_data(n):
-    #global data
-    #print "p-%s"%n
-    #data.append(n)
-    #print 'data',data
+    '''global data
+    print "p-%s"%n
+    data.append(n)
+    print 'data',data'''
     for i in range(5):
         print i
         time.sleep(1)
@@ -82,9 +82,31 @@ def test_queue_pipe():
         reader_p.join()
         print "Sending %s numbers to Queue() took %s seconds" % (count, (time.time() - _start))
 
+def test_dummy():
+    def work(args):
+        name, event = args
+        if name == 5:
+            time.sleep(1)
+            event.set()
+            print('event set')
+        else:
+            while 1:
+                if event.is_set():
+                    print('event is set')
+                    break
+                else:
+                    time.sleep(5)
+        return
+    event = Event()
+    lis = [(x, event) for x in range(10)] 
+    pool = dummy.Pool(10)
+    pool.map(work, lis)
+    return
+
 
 
 if __name__ == "__main__":
     #test_global_in_multiprocess()
     #print data
-    test_queue_pipe()
+    #test_queue_pipe()
+    test_dummy()
