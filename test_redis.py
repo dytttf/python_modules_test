@@ -7,15 +7,27 @@ redis测试
 import time
 import redis
 import threading
+import socket
+#print socket.getdefaulttimeout()
+socket.setdefaulttimeout(2)
 
 redis_uri = "redis://localhost:6379/0"
 
 def timeout():
     conn = redis.StrictRedis.from_url(redis_uri,
-                                      #retry_on_timeout=True,
-                                      #socket_timeout=20,
+                                      retry_on_timeout=True,
+                                      socket_timeout=1,
+                                      socket_connect_timeout=3
                                       )
-    print conn.keys("*")
+    try:
+        a = time.time()
+        print conn.keys("*")
+    except:
+        import traceback
+        traceback.print_exc()
+        b = time.time()
+        print b-a
+        return
     conn_list = conn.connection_pool._available_connections
     print [id(x) for x in conn_list]
     time.sleep(15)
