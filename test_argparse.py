@@ -10,6 +10,7 @@ def main():
     parser.add_argument('--restart', default=None, help="restart qq process")
     #不加-为必选参数
     #parser.add_argument('num', default=None, help="restart qq process")
+    #action="store_true" >> cmd_args.port = True
     #parser.add_argument("--port", action="store_true", type=int)
     parser.add_argument("--port", type=int)
     parser.add_argument("-p", type=int)
@@ -20,6 +21,8 @@ def main():
     
     print sys.argv
     cmd_args = parser.parse_args(sys.argv[1:])
+    #cmd_args = parser.parse_args()
+    parser.print_usage()
     print cmd_args.port
     print cmd_args.p
     print cmd_args.meta
