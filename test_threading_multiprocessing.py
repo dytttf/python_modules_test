@@ -1,5 +1,7 @@
 # coding:utf-8
+import os
 import time
+import signal
 import threading
 import multiprocessing
 from multiprocessing import Process, Pipe, Queue, Event, dummy
@@ -83,6 +85,7 @@ def test_queue_pipe():
         print "Sending %s numbers to Queue() took %s seconds" % (count, (time.time() - _start))
 
 def test_dummy():
+    u'''测试dummy  event'''
     def work(args):
         name, event = args
         if name == 5:
@@ -103,10 +106,31 @@ def test_dummy():
     pool.map(work, lis)
     return
 
+def test_kill():
+    def work():
+        pid = os.getpid()
+        print '111',pid
+        with open('temp/mul.pid', 'w') as f:
+            f.write(str(pid))
+        time.sleep(100)
+        return
+    print os.getpid()
+    p = multiprocessing.Process(target=work)
+    p.start()
+    p.join(timeout=10)
+    with open('temp/mul.pid') as f:
+        pid = f.read()
+    os.kill(int(pid), signal.SIGTERM)
+    del p
+    print 'kill'
+    time.sleep(20)
+    return
+
 
 
 if __name__ == "__main__":
     #test_global_in_multiprocess()
     #print data
     #test_queue_pipe()
-    test_dummy()
+    #test_dummy()
+    test_kill()
