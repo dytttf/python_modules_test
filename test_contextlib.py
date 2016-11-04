@@ -31,7 +31,8 @@ class Test(object):
     def run(self):
         print self.args
         print aaa
-        
+# 不需要定义 __enter__ 和 __exit__
+# 在函数中自己调用 进入和退出的方法 使用 contextmanager 将函数包装成 上下文管理器
 
 @contextlib.contextmanager
 def make_Test(*args):
