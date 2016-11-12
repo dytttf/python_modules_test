@@ -70,3 +70,25 @@ print add
 #          updated = WRAPPER_UPDATES):
 #    return partial(update_wrapper, wrapped=wrapped,
 #                   assigned=assigned, updated=updated)
+
+
+# 装饰器
+def A(C):
+    def B(*args, **kwargs):
+        result = C(*args, **kwargs)
+        return result
+    return B
+
+@A
+def C(*args, **kwargs):
+    print args
+    print kwargs
+    return
+'''
+等价关系推导
+        @A
+C <==>  def C():    <==>  A(C) <==> B
+            ...
+
+C(*args) <==> B(*args) <==> C(*args) <==> result
+'''

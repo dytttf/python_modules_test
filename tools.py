@@ -93,5 +93,5 @@ def everySystem(number, system):
 
 if __name__ == "__main__":
     #print get_random_ip()
-    #print everySystem(1000, 33)
+    print everySystem(1000, 36)
     

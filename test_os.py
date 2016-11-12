@@ -1,6 +1,5 @@
 #coding:utf8
 import os
-import glob
 
 #
 #这些代码在工作路径执行 结果不同

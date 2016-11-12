@@ -89,6 +89,7 @@ def get_iso():
 def get_latin():
     '''设置返回值类型等'''
     response.content_type = 'text/html; charset=latin9'
+    #response.content_type = 'application/json'
     return u'ISO-8859-15 is also known as latin9.'
 
 @route('/restricted')
