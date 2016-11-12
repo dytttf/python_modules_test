@@ -52,4 +52,3 @@ t.repeat(repeat=3, number=1)
 # -- statement
 
 # python -m timeit -n 10 -r 3 "[].append(1)"
-# aaa
