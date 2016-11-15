@@ -30,7 +30,7 @@ class Test(object):
 
     def run(self):
         print self.args
-        print aaa
+        #print aaa
 # 不需要定义 __enter__ 和 __exit__
 # 在函数中自己调用 进入和退出的方法 使用 contextmanager 将函数包装成 上下文管理器
 
@@ -38,6 +38,7 @@ class Test(object):
 def make_Test(*args):
     t = Test(*args)
     t.enter()
+    # 不会自动捕获异常 需要主动 try
     try:
         yield t
     #except Exception, err:
@@ -50,7 +51,15 @@ def make_Test(*args):
 with make_Test(1,2,3) as f:
     f.run()
 
-print 111
+# 无返回值
+@contextlib.contextmanager
+def tag(name):
+    print('<{}>'.format(name))
+    yield 
+    print('</{}>'.format(name))
 
+with tag('h1'):
+    print name
+    
 if __name__ == "__main__":
     pass
