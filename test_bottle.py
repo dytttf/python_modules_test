@@ -41,6 +41,8 @@ def do_login():
     '''接收表单数据'''
     username = request.forms.get("username","")
     password = request.forms.get("password","")
+    # 应对大容量 post
+    j_data = request.body.read()
     if check_login(username, password):
         response.set_cookie('account', username)#, secret='some-secret-key')
         return "<p>Your login information was correct</p>"
