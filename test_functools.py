@@ -45,7 +45,7 @@ class partialmethod(partial):
 # 使用此装饰器函数消除自定义装饰器函数的副作用 例如 被装饰函数的 __name__ 等属性会变化
 
 def decorator(func):
-    @functools.wrapper(func)
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
         return func(*args, **kwargs())
     return wrapper
