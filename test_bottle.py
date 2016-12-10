@@ -55,7 +55,7 @@ def check_login(username, password):
 @route('/static/<filepath>')
 def server_static(filepath):
     '''返回静态文件'''
-    return static_file(filepath, root=r'E:\FPAN\somepy',
+    return static_file(filepath, root=r'E:\FPAN\somepy\mypyfile',
                        mimetype='text/plain', download=True or filepath
                        )
 
