@@ -88,6 +88,19 @@ def everySystem(number, system):
     chars.reverse()
     chars = [str(x) for x in chars]
     return "".join(chars)
+
+def unicode_to_html(char_list):
+    '''
+    unicode 字符转换为 html 实体字符
+    '''
+    html_char_list = []
+    for char in char_list:
+        code = re.search(r"\\u([^\\\'\"]+)", repr(char))
+        if not code:
+            html_char_list.append(char)
+        else:
+            html_char_list.append("&#%s;"%int(code.group(1), 16))
+    return "".join(html_char_list)
         
 
 
