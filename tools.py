@@ -8,7 +8,7 @@ def ip_to_number(ip_address):
     '''
     a.b.c.d
     (2^24)*a + (2^16)*b + (2^8)*c + (2^0)*d
-    
+
     11111111 00000000 00000000 00000000
     (2^24)*a
              11111111 00000000 00000000
@@ -24,8 +24,7 @@ def ip_to_number(ip_address):
     2.2.2.2
     2^25 + 2^17 + 2^9 + 2^1
     00000010 00000010 00000010 00000010
-    
-    
+
     '''
     number = 0
     for v in ip_address.split('.'):
@@ -101,10 +100,8 @@ def unicode_to_html(char_list):
         else:
             html_char_list.append("&#%s;"%int(code.group(1), 16))
     return "".join(html_char_list)
-        
 
 
 if __name__ == "__main__":
     #print get_random_ip()
     print everySystem(1000, 36)
-    
