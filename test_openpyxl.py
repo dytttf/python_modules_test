@@ -47,6 +47,10 @@ sheet_names = wb.get_sheet_names()
 # 获取操作表
 work_sheet = wb.get_sheet_by_name("Test Sheet 1")
 
+# 获取行数和列数
+print(u"行数: {}".format(work_sheet.max_row))
+print(u"列数: {}".format(work_sheet.max_column))
+
 # 获取单元格数据
 A1 = work_sheet['A1']
 print(u"单元格 A1 数据为: {}".format(A1.value))
