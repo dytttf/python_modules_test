@@ -30,22 +30,23 @@ print sheet_1.cell_value(0,0)
 
 
 
-#xlwt只写
-#cell_overwrite_ok 重复写同一个单元格
-excel_file = xlwt.Workbook()
-sheet = excel_file.add_sheet('sheet1', cell_overwrite_ok=True)
-sheet.write(0,0,'测试'.decode('utf8'))
+if 0:
+    #xlwt只写
+    #cell_overwrite_ok 重复写同一个单元格
+    excel_file = xlwt.Workbook()
+    sheet = excel_file.add_sheet('sheet1', cell_overwrite_ok=True)
+    sheet.write(0,0,'测试'.decode('utf8'))
 
-#style用法
-style = xlwt.XFStyle()
-font = xlwt.Font()
-font.name = 'Times New Roman'
-font.bold = True
-font.colour_index = 13
-style.font = font
-sheet.write(0, 1, "Times New Roman", style)
+    #style用法
+    style = xlwt.XFStyle()
+    font = xlwt.Font()
+    font.name = 'Times New Roman'
+    font.bold = True
+    font.colour_index = 13
+    style.font = font
+    sheet.write(0, 1, "Times New Roman", style)
 
-#不能写xlsx，打开报错
-excel_file.save('./test_files/ttt.xls')
+    #不能写xlsx，打开报错
+    excel_file.save('./test_files/ttt.xls')
 
 
