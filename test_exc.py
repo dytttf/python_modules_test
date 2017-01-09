@@ -23,6 +23,9 @@ try:
 except myexc as e:
     print e
     print traceback.format_exc()
+    raise e
+finally:
+    print "finally"
     
 
 # 异常捕获的一些用法
