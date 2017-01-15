@@ -5,6 +5,20 @@
 import gc
 import pprint
 
+# 调试标志
+gc.DEBUG_STATS  # 输出内存回收时的信息
+gc.DEBUG_COLLECTABLE  # 输出可以被回收的对象的个数信息
+gc.DEBUG_UNCOLLECTABLE  # 输出无法使用但也无法回收的对象信息
+gc.DEBUG_INSTANCES  # 输出实例对象
+gc.DEBUG_OBJECTS  # 输出非示例对象
+gc.DEBUG_SAVEALL  # 保存被回收的对象到 gc.garbage 而不是释放他们
+gc.DEBUG_LEAK  # 调试程序标志位 相当于设置了所有的标志(除了 gc.DEBUG_STATS)
+
+# gc.disable()  # 关闭自动内存回收
+# gc.enable()  # 开启自动内存回收
+
+### 获取被回收的对象个数
+##print(gc.get_count())
 
 # 会导致内存泄漏的例子
 '''
@@ -20,9 +34,10 @@ while 1:
     A = None
     B = None
 '''
-#
-
+# 查看内存回收机制是否开启
 print gc.isenabled()
+
+
 #查看垃圾回收器的阈值
 '''
 (700, 10, 10)
