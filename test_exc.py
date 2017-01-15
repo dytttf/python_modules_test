@@ -23,15 +23,28 @@ try:
 except myexc as e:
     print e
     print traceback.format_exc()
-    raise e
+    #raise e
 finally:
+    print sys.exc_info()
     print "finally"
-    
+
+
+def test_1():
+    u'''测试异常信息保存方式'''
+    print traceback.format_exc()
+    try:
+        1/0
+    except:
+        print traceback.format_exc()
+    return
+test_1()
+print 1
+print traceback.format_exc()
 
 # 异常捕获的一些用法
 try:
     # 1/0
-    int("")
+    int("1")
 # except (ZeroDivisionError,ValueError) as e:
 except Exception as e:
 # except ZeroDivisionError as e:
