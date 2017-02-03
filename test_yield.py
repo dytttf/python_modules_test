@@ -12,6 +12,9 @@ def fib(n):
 a = fib(4)
 print a.next()
 #send()控制yield返回值
+#send(...)
+#   send(arg) -> send 'arg' into generator,
+#   return next yielded value or raise StopIteration.
 print 'a.send(2)',a.send(2)
 print 'a.send(3)',a.send(3)
 print 'a.send(2.5)',a.send(2.5)
