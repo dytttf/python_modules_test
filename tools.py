@@ -102,6 +102,34 @@ def unicode_to_html(char_list):
     return "".join(html_char_list)
 
 
+def keepalive(handle_func=None, interval=1):
+   '''装饰器
+   功能：
+      捕获被装饰函数的异常并重新调用函数
+      函数正常结束则结束
+   装饰器参数：
+      @handle_func:function
+         异常处理函数 默认接收参数 e
+      @interval:number
+         函数重启间隔
+   '''
+   def wrapper(func):
+      @functools.wraps(func)
+      def keep(*args, **kwargs):
+         while 1:
+            try:
+               result = func(*args, **kwargs)
+            except Exception as e:
+               if handle_func:
+                  handle_func(e)
+               time.sleep(interval)
+               continue
+            break
+         return result
+      return keep
+   return wrapper
+
+
 if __name__ == "__main__":
     #print get_random_ip()
     print everySystem(1000, 36)
