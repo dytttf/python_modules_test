@@ -98,3 +98,14 @@ if 0:
 # getclasstree
 if 0:
     print inspect.getclasstree([test])
+
+def test_args(a, b, c, d=2):
+    e = 1
+    pass
+    
+# getargs
+# getargspec
+if 1:
+    print inspect.getargs(test_args.func_code)
+    print inspect.getargspec(test_args)
+    print test_args.func_code.co_varnames
