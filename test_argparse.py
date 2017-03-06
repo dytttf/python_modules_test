@@ -55,7 +55,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-f")
 # 一次可指定多个参数 不过 使用 -f2 传递的参数会被赋值给 -f1
 parser.add_argument("-f1", "-f2")
-
+s
 # action  将参数按照指定动作处理
 # 支持
 # store 保存参数的值  默认动作
