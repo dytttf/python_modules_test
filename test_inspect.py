@@ -102,10 +102,24 @@ if 0:
 def test_args(a, b, c, d=2):
     e = 1
     pass
-    
+
 # getargs
 # getargspec
-if 1:
+if 0:
     print inspect.getargs(test_args.func_code)
     print inspect.getargspec(test_args)
     print test_args.func_code.co_varnames
+
+# attrgetter
+if 0:
+    f = inspect.attrgetter("attrgetter", "attrgetter")
+    print f(inspect)
+
+# 
+if 0:
+    print inspect.classify_class_attrs(inspect.ArgInfo)
+
+# findsource
+if 0:
+    info = inspect.findsource(inspect.findsource)
+    print info[0][info[1]]
