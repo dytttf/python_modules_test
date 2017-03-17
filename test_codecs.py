@@ -33,6 +33,10 @@ unknown_encoder = codecs.getencoder('aaa')
 print unknown_encoder
 #
 
+utf8_file = codecs.open("utf8_file.txt", mode="w", encoding="utf8")
+#utf8_file = open("utf8_file.txt", "w")
+utf8_file.write(u"你好")
+utf8_file.close()
 
 
 
