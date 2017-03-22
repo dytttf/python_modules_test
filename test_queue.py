@@ -1,5 +1,6 @@
 #coding:utf8
-import Queue
+from Queue import Queue
+#from multiprocessing import Queue
 '''
 #所有属性
 ['Empty', 'Full', 'LifoQueue', 'PriorityQueue', 'Queue', '__all__',
@@ -13,7 +14,7 @@ import Queue
 
 #
 #只接收队列长度一个参数
-queue = Queue.Queue(maxsize=5)
+queue = Queue(maxsize=5)
 '''
 dir(queue)
 ['__doc__', '__init__', '__module__', '_get', '_init', '_put', '_qsize',
