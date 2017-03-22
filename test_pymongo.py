@@ -5,7 +5,7 @@ pymongo 3.0 模块测试
 import pymongo
 
 #建立连接
-conn = pymongo.MongoClient("172.16.5.38", 27017)
+conn = pymongo.MongoClient("localhost", 27017)
 
 #查看所有数据库
 print conn.database_names()
