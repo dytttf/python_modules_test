@@ -50,7 +50,7 @@ child_process = subprocess.Popen("dir", stdout=stdout_file, shell=True)
 # 检查子进程状态 非阻塞 returncode
 returncode = child_process.poll()
 
-#
+# 交互
 (stdoutdata, stderrdata) = child_process.communicate()
 
 child_process.kill()

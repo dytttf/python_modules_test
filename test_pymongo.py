@@ -28,6 +28,9 @@ print collection.name
 data = collection.find_one()
 print type(data)
 
+# 更新
+#update(self, spec, document, upsert=False, manipulate=False, multi=False, check_keys=True, **kwargs)
+
 
 
 
