@@ -7,6 +7,8 @@ greenlet
 switch(...):
     切换到此微线程并执行
     如果此微线程已结束，则返回给定的参数
+    # 当第一次切换到微线程时，switch的参数会传递给执行函数
+    以后切换到此微线程的参数则不会再被执行函数接收
 
 throw(...):
     抛出异常 默认抛出 greenlet.GreenletExit()
@@ -24,15 +26,17 @@ from greenlet import greenlet
 
 def test1():
     print(12)
-    gr2.switch()
+    gr2.switch("gr2's args")
     print(34)
 
 
-def test2():
+def test2(args):
     print(56)
+    print(args)
     gr1.switch()
     print(78)
-print(greenlet)
+    print(args)
+
 
 gr1 = greenlet(test1)
 gr2 = greenlet(test2)
@@ -41,5 +45,5 @@ gr1.switch()
 print("gr1.dead: %s"%gr1.dead)
 print("gr2.dead: %s"%gr2.dead)
 print("切换回 gr2")
-gr2.switch()
+gr2.switch("不接收的参数")
 print("gr2.dead: %s"%gr2.dead)
