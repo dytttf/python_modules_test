@@ -22,9 +22,15 @@ dead:
 
 parent:
     每一个greenlet都有一个父，当导入greenlet模块时，会默认创建一个根父，此时新建的greenlet都已根为父，当greenlet死掉后，执行进程将返回到父greenlet
+run:
+    switch() 就开始执行run,执行注册的函数,greenlet启动后此属性将不存在
 
 '''
 from greenlet import greenlet
+'''
+class greenlet(__builtin__.object)
+ |  greenlet(run=None, parent=None) -> greenlet
+'''
 
 
 def test1():
