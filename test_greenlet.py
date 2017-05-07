@@ -20,6 +20,9 @@ getcurrent()
 dead:
     微线程是否已结束
 
+parent:
+    每一个greenlet都有一个父，当导入greenlet模块时，会默认创建一个根父，此时新建的greenlet都已根为父，当greenlet死掉后，执行进程将返回到父greenlet
+
 '''
 from greenlet import greenlet
 
@@ -40,6 +43,9 @@ def test2(args):
 
 gr1 = greenlet(test1)
 gr2 = greenlet(test2)
+print("i am gr1: %s"%gr1)
+print("i am gr2: %s"%gr2)
+print("gr2.parent: %s"% gr2.parent)
 
 gr1.switch()
 print("gr1.dead: %s"%gr1.dead)
