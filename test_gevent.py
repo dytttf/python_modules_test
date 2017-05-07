@@ -4,6 +4,10 @@
 等到IO操作完成，再在适当的时候切换回来继续执行。
 由于IO操作非常耗时，经常使程序处于等待状态，有了gevent为我们自动切换协程，
 就保证总有greenlet在运行，而不是等待IO。
+
+# gevent.monkey.patch_all()
+使用之后一些模块的属性将会被替换成gevent定义的属性，无论这个模块是在patch之前导入还是之后导入
+
 """
 import time
 
@@ -73,3 +77,18 @@ if 0:
         gevent.spawn(waiter),
         gevent.spawn(waiter),
     ])
+
+def talk(msg):
+    print(msg+msg)
+    gevent.sleep(0)
+    print msg
+    event.set()
+    return
+g1 = gevent.spawn(talk, 'bar')
+print("g1 %s"%g1)
+print(gevent.getcurrent())
+#gevent.get_hub().switch()
+#gevent.sleep(0)
+#g1.switch()
+event.wait()
+print("ok")
