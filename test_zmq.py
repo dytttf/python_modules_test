@@ -29,9 +29,11 @@ if 0:
 # 
 socket = context.socket(zmq.REP)
 # 服务端绑定一个监听地址
-socket.bind("tcp://localhost:5555")
+socket.bind("tcp://127.0.0.1:5555")
 # 客户端绑定一个监听地址
-# socket.connect("tcp://localhost:5555")
+# socket.connect("tcp://127.0.0.1:5555")
+# 设置客户端过滤条件
+# socket.setsockopt(zmq.SUBSCRIBE,'')
 
 #接收数据
 # recv(flags=0, copy=True, track=False)
