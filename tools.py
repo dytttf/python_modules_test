@@ -130,6 +130,26 @@ def keepalive(handle_func=None, interval=1):
    return wrapper
 
 
+def RPN_value(expression):
+    """后缀表达式求值"""
+    if not isinstance(expression, list):
+        expression = expression.split(",")
+    expression = [int(x) if x.isdigit() else x for x in expression]
+    expression.reverse()
+    temp_list = []
+    while expression:
+        top = expression.pop()
+        # 遇到符号则开始求值
+        if not isinstance(top, int):
+            num1 = temp_list.pop()
+            num2 = temp_list.pop()
+            top = eval("%s%s%s" % (num2, top, num1))
+        # 入栈
+        temp_list.append(top)
+    return temp_list[0]
+        
+
 if __name__ == "__main__":
     #print get_random_ip()
-    print everySystem(1000, 36)
+    #print everySystem(1000, 36)
+    #print RPN_value("1,2,3,+,4,*,+,5,-")
