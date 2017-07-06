@@ -117,7 +117,8 @@ def main():
     # 写入数据
     for line, data in enumerate(datas):
         for index, key in enumerate(sort_keys):
-            sheet.cell(row=line+2, column=index+1, value=str(data[key]))
+            sheet.cell(row=line+2, column=index+1, value=data[key])
+        print line
     wb.save('test.xlsx')
     return
 
