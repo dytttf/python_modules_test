@@ -32,6 +32,7 @@ if not os.path.exists(debug_file):
         }
     for position, value in data.iteritems():
         sheet[position] = value
+        # sheet.cell(row=1, column=1, value=value)
     wb.save(debug_file)
     print(u"创建成功\n {} ".format(debug_file))
 
@@ -70,6 +71,58 @@ print(u"修改后 单元格 A1 数据为: {}".format(A1.value))
 
 # 保存修改到新的表
 wb.save(debug_change_file)
+
+
+
+import MySQLdb
+import openpyxl
+
+def main():
+##    mysql_conn = MySQLdb.connect(
+##        host='localhost',
+##        port=3306,
+##        user='root',
+##        passwd='123456',
+##        db='test',
+##        charset='utf8'
+##        )
+##    # 字典
+##    cursor = mysql_conn.cursor(cursorclass=MySQLdb.cursors.DictCursor)
+##    sql = ""
+##
+##    # 执行sql 将数据获取到内存中
+##    cursor.execute(sql)
+##    datas = cursor.fetchall()
+    datas = [
+        {
+        "A":'1',
+        "B":'2',
+            },
+        {
+        "A":'3',
+        "B":'4',
+            }
+        ]
+    # 新建excel
+    wb = openpyxl.Workbook()
+    sheet = wb.get_sheet_by_name("Sheet")
+    # 修改表名
+    sheet.title = "TestSheet1"
+
+    # 写入表头
+    sort_keys = datas[0].keys()
+    sort_keys.sort()
+    for index, key in enumerate(sort_keys):
+        sheet.cell(row=1, column=index+1, value=key)
+    # 写入数据
+    for line, data in enumerate(datas):
+        for index, key in enumerate(sort_keys):
+            sheet.cell(row=line+2, column=index+1, value=str(data[key]))
+    wb.save('test.xlsx')
+    return
+
+    
+
 
 
 
