@@ -50,6 +50,16 @@ socket.bind("tcp://127.0.0.1:5555")
 # send_pyobj(obj, flags=0, protocol=3)
 # send_string(u, flags=0, copy=True, encoding='utf-8')
 
+# poller
+# socket池 轮询注册进去的socket 返回有消息的socket对象
+##p = zmq.Poller()
+##p.register(socket, zmq.POLLIN)
+##poll_result = p.poll(timeout=1000)
+##if poll_result:
+##    for _socket, flag in poll_result:
+##        if flag:
+##            msg = _socket.recv()
+
 if not socket.closed:
     socket.close()
 if not context.closed:
