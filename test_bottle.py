@@ -62,6 +62,9 @@ def server_static(filepath):
 @error(404)
 def error404(error):
     '''参数必须为error, 重写error'''
+    # 将404重定向到指定网址
+    response.status = 301
+    response.add_header("location", "http://www.baidu.com")
     return "Nothing here, sorry"
 
 @route('/return')
