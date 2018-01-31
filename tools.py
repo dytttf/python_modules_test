@@ -147,9 +147,36 @@ def RPN_value(expression):
         # 入栈
         temp_list.append(top)
     return temp_list[0]
+
+
+def recursive_encode_utf8(data):
+    """对json格式数据进行操作  将其中任何层级的字符串转为utf8编码"""
+    if isinstance(data, basestring):
+        if isinstance(data, unicode):
+            data = data.encode("utf8")
+        else:
+            try:
+                data = data.decode("gbk")
+                data = data.encode("utf8")
+            except:
+                pass
+    elif isinstance(data, (list, tuple)):
+        data = [recursive_encode_utf8(x) for x in data]
+    elif isinstance(data,  (int, float, long)):
+        pass
+    elif isinstance(data, dict):
+        new_data = {}
+        for key, value in data.items():
+            key = recursive_encode_utf8(key)
+            value = recursive_encode_utf8(value)
+            new_data.update({key: value})
+        data = new_data
+    return data
         
 
 if __name__ == "__main__":
     #print get_random_ip()
     #print everySystem(1000, 36)
     #print RPN_value("1,2,3,+,4,*,+,5,-")
+    data = [u"你好", 1, 2]
+    print(recursive_encode_utf8(data))
